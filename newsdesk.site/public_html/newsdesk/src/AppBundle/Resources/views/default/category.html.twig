@@ -1,0 +1,48 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; align-items: center">
+                <div class="row">
+                    {% for article in articles %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <a class="p-2 text-muted"
+                                   href="{{ path('article_item', { category: category, item: article.title, id: article.id }) }}">
+                                    <h3>{{ article.title }}</h3></a><br/>
+                                <p>{{ article.category.name }}</p>
+                                <img class="card-img-top"
+                                     src="https://i1.wallbox.ru/wallpapers/main/201120/356ccc559d8d03df3ffb2ed05df55f3c.jpg"
+                                     alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text">{{ article.body }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div>
+                    <ul style="display: flex; flex-direction: row;  list-style-type: none">
+                        {% if paginator.page > 1 %}
+                            <li >
+                                <a style="padding: 10px" href="{{ path('category_item', { category: category, id: id, 'page': paginator.page - 1 }) }}">Prev</a>
+                            </li>
+                        {% endif %}
+                        <li>{{ paginator.page }}</li>
+                        {% if paginator.page * 3 <= 3 %}
+                            <li>
+                                <a style="padding: 10px" href="{{ path('category_item', { category: category, id: id, 'page': paginator.page + 1 }) }}">Next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block stylesheets %}
+
+{% endblock %}

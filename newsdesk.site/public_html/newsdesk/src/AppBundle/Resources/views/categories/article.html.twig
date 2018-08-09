@@ -1,0 +1,38 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div style="width: 60%;
+                                  border: 1px solid #ababab;
+                                  height: 100%;
+                                  padding: 20px">
+                <div class="main_article">
+                    <div class="blog-post">
+                        <h2 class="blog-post-title">{{ article.title }}</h2>
+                        <p class="blog-post-meta"> by {{ article.author }}
+                            <span style="font-size: 13px; font-style: italic">{{ article.createdate.date |date }}</span>
+                        </p>
+                        <p>{{ article.body }}</p>
+                        <p>Category: {{ article.category.name }}</p>
+
+                    </div>
+                </div>
+                <div style="border: 1px solid #ababab; border-radius: 10px; padding: 5px">
+                    {{  include ('@App/default/feedback.html.twig', { 'comments' : article.comments}) }}
+                </div>
+            </div>
+            <div style="width: 35%">
+                {% include '@App/default/dayNews.html.twig' %}
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+    {% block stylesheets %}
+
+    {% endblock %}

@@ -1,0 +1,20 @@
+{% block commentForm %}
+    <div style="width: 100%">
+        {{ form_start(comment_form) }}
+        {{ form_widget(comment_form.comment, {'attr': {'class': 'form-control', 'placeholder': 'Enter your comment'}}) }}
+        {{ form_widget(comment_form.submit, {'attr': {'class': 'btn btn-lg  btn-block'}}) }}
+        {{ form_end(comment_form) }}
+    </div>
+
+    <div>Comments:</div>
+    {% for comment in comments| reverse %}
+        <div style="padding: 5px; margin: 5px; background-color: #efefef; border-radius: 3px" class="form-group">
+            {{ comment.comment }}
+        </div>
+        {#<div> Прокоментировал: {{ dump(comment.author) }}</div>#}
+    {% endfor %}
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.min.css') }}">
+{% endblock %}

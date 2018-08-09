@@ -1,0 +1,14 @@
+{% block mainArticle %}
+    {% for mainArtic in mainArticles| slice(-1, 1) %}
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <a class="p-2 text-muted" href="{{ path('admin_article_item', {category: mainArtic.category.name, id: mainArtic.category.id, item: mainArtic.title}) }}">
+                <h1 class="display-4 font-italic">{{ mainArtic.title }}</h1></a>
+            <p class="lead">{{ mainArtic.body }}</p>
+            <p class="lead mb-0">
+                <a href="{{ path('admin_article_item', {category: mainArtic.category.name, id: mainArtic.category.id, item: mainArtic.title}) }}" class="text-white font-weight-bold">Continue reading...</a>
+            </p>
+        </div>
+    </div>
+        {% endfor %}
+{% endblock %}

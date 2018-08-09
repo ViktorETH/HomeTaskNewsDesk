@@ -1,0 +1,17 @@
+{% block mainArtics %}
+    {% for mainArtic in mainArticles |slice(1, 4) |reverse %}
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">{{ mainArtic.category.name }}</strong>
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="{{ path('article_item', {category: mainArtic.category.name, id: mainArtic.category.id, item: mainArtic.title}) }}">{{ mainArtic.title }}</a>
+                    </h3>
+                    <div class="mb-1 text-muted">{{ mainArtic.createdate.date |date }}</div>
+                    <p class="card-text mb-auto">{{ mainArtic.body }}</p>
+                    <a href="{{ path('article_item', {category: mainArtic.category.name, id: mainArtic.category.id, item: mainArtic.title}) }}">Continue reading</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

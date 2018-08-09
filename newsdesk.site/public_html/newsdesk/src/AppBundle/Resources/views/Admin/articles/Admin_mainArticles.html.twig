@@ -1,0 +1,17 @@
+{% block mainArtics %}
+    {% for mainsmallArtic in mainArticles |slice(5, 15) |reverse%}
+
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">{{ mainsmallArtic.category.name }}</strong>
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="{{ path('admin_article_item', {category: mainsmallArtic.category.name, id: mainsmallArtic.category.id, item: mainsmallArtic.title}) }}">{{ mainsmallArtic.title }}</a>
+                    </h3>
+                    <div class="mb-1 text-muted">{{ mainsmallArtic.createdate.date |date }}</div>
+                    <p class="card-text mb-auto">{{ mainsmallArtic.body }}</p>
+                    <a href="{{ path('admin_article_item', {category: mainsmallArtic.category.name, id: mainsmallArtic.category.id, item: mainsmallArtic.title}) }}">Continue reading</a>
+                </div>
+            </div>
+
+    {% endfor %}
+{% endblock %}
